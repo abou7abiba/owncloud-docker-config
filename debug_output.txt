@@ -1,5 +1,5 @@
 47: HDD_PATH='/media/aibrahim/My Book'
-48: HDD_DEVICE=/dev/sdb1
+48: HDD_LABEL='My Book'
 49: MOUNT_FLDR=/media/MyBook
 52: USERNAME=www-data
 53: GROUPNAME=root
@@ -7,12 +7,14 @@
 55: UserID=33
 556: id -g root
 56: GroupID=0
-58: echo '# Mount /media/aibrahim/My Book HDD as user:www-data(33) and group:root(0)'
+58: echo '=== Mount [My Book] HDD as user:www-data(33) and group:root(0) to mounting point [/media/MyBook] ==='
 61: '[' '!' -d /media/MyBook ']'
-69: isMounted /dev/sdb1
-36: findmnt -rno SOURCE,TARGET /dev/sdb1
-71: echo 'HDD /media/aibrahim/My Book already mounted. Will be unmounted'
-72: umount /dev/sdb1
-73: echo 'UnMount point /dev/sdb1 sucessfully.'
-78: mount -t exfat /dev/sdb1 /media/MyBook -o uid=33,gid=0,utf8,dmask=027,fmask=137
-79: set +x
+68: echo 'Mount point /media/MyBook already exist. We Will use it.'
+71: isMounted '/media/aibrahim/My Book'
+36: findmnt -rno SOURCE,TARGET '/media/aibrahim/My Book'
+73: echo 'HDD /media/aibrahim/My Book already mounted. Will be unmounted'
+74: umount '/media/aibrahim/My Book'
+75: echo 'UnMount point /media/aibrahim/My Book sucessfully.'
+81: mount -t exfat --label 'My Book' /media/MyBook -o uid=33,gid=0,utf8,dmask=027,fmask=137
+82: echo 'Mount My Book HDD completed sucessfully.'
+83: set +x

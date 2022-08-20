@@ -45,7 +45,7 @@ mountStorage ()
 {
     set -x #start debugging
     HDD_PATH=$1
-    HDD_DEVICE=$2
+    HDD_LABEL=$2
     MOUNT_FLDR=$3
     # USERNAME='www-data'
     # GROUPNAME='root'
@@ -55,7 +55,7 @@ mountStorage ()
     UserID=`id -u $USERNAME`
     GroupID=`id -g $GROUPNAME`
 
-    echo "# Mount $HDD_PATH HDD as user:$USERNAME($UserID) and group:$GROUPNAME($GroupID)"
+    echo "=== Mount [$HDD_LABEL] HDD as user:$USERNAME($UserID) and group:$GROUPNAME($GroupID) to mounting point [$MOUNT_FLDR] ==="
 
     ### Check if a directory does not exist, if not create it ###
     if [ ! -d "$MOUNT_FLDR" ]
@@ -63,30 +63,34 @@ mountStorage ()
         echo "Mount point $MOUNT_FLDR DOES NOT exists." 
         mkdir "$MOUNT_FLDR"
         chown -R $USERNAME:$GROUPNAME "$MOUNT_FLDR"
-        echo "Mount point $MOUNT_FLDR created sucessfully." 
+        echo "Mount point $MOUNT_FLDR created sucessfully."
+    else
+        echo "Mount point $MOUNT_FLDR already exist. We Will use it." 
     fi
 
-    if isMounted "$HDD_DEVICE"
+    if isMounted "$HDD_PATH"
     then
     	echo "HDD $HDD_PATH already mounted. Will be unmounted" 
-        umount "$HDD_DEVICE"
-        echo "UnMount point $HDD_DEVICE sucessfully."
+        umount "$HDD_PATH"
+        echo "UnMount point $HDD_PATH sucessfully."
     else
-        echo "HDD $HDD_DEVICE is not mounted yet."
+        echo "HDD $HDD_PATH is not mounted yet."
     fi
 
-    mount -t exfat "$HDD_DEVICE" "$MOUNT_FLDR" -o uid=$UserID,gid=$GroupID,utf8,dmask=027,fmask=137
+#    mount -t exfat "$HDD_DEVICE" "$MOUNT_FLDR" -o uid=$UserID,gid=$GroupID,utf8,dmask=027,fmask=137
+    mount -t exfat --label "My Book" "$MOUNT_FLDR" -o uid=$UserID,gid=$GroupID,utf8,dmask=027,fmask=137
+    echo "Mount [$HDD_LABEL] HDD completed sucessfully."
     set +x # Stop debugging
 }
 
 MY_BOOK_PATH="/media/aibrahim/My Book"
-MY_BOOK_DEVICE="/dev/sdb1"
+MY_BOOK_LABEL="My Book"
 MY_BOOK_FLDR="/media/MyBook"
 
 MY_SPACE_PATH="/media/aibrahim/MySpace"
 MY_SPACE_DEVICE="/dev/sdc1"
 
-mountStorage "$MY_BOOK_PATH" "$MY_BOOK_DEVICE" "$MY_BOOK_FLDR" "www-data" "root"
+mountStorage "$MY_BOOK_PATH" "$MY_BOOK_LABEL" "$MY_BOOK_FLDR" "www-data" "root"
 
 
 
@@ -106,4 +110,4 @@ mountStorage "$MY_BOOK_PATH" "$MY_BOOK_DEVICE" "$MY_BOOK_FLDR" "www-data" "root"
 # fi
 # mount -t exfat "$MY_BOOK_DEVICE" "$MY_BOOK_FLDR" -o uid=33,gid=0,utf8,dmask=027,fmask=137
 
-echo "## Mounting MyBook HDD Completed ##"
+echo "=== Mounting MyBook HDD Completed ==="
