@@ -35,3 +35,31 @@ To do so I needed a way to have all my devices to be connected to this centraliz
 
 ## My solution architecture
 
+## My Configuration
+
+### Setup External Storage
+ 
+ In this step we need to configure the external storage of OwnCloud to have access to our External HD. It is mounted to the container as a volume with mount point ``/mnt/MyExtSpace``.
+ In the admin settings of the storage as shown in the below screen, 
+ 
+ ![Setup Screen](doc/images/Setup-external-storage.png)
+
+ you will need to setup a local storage as the below screen  
+
+ ![Setup part](doc/images/External-Storage-Setup.png)
+
+ To do so, you will add a local storage from the menu and setup the path as the following:
+
+ - Folder Name: ``My-Book``
+ - Authentication: ``None``
+ - Configuration: ``/mnt/MyExtSpace``
+ - Available for: ``admin (group)``
+
+This will create a root folder called ``My-Book`` which is mapped to the path ``/media/MyBook/owncloud`` of the external HDD.
+
+To create another root folder for example ``My-Media`` which is a sub folder under the main storage folder ``/media/MyBook/owncloud/02-Media``. To do so we will configure it as the following:
+
+ - Folder Name: ``My-Media``
+ - Authentication: ``None``
+ - Configuration: ``/mnt/MyExtSpace``
+ - Available for: ``admin (group)``
