@@ -1,0 +1,9 @@
+10.6: Pulling from library/mariadb
+Digest: sha256:5910a8bb350c9174ad26f00d0c473b0d0eefb2c3e0e335763a269e9ca73c8adc
+Status: Downloaded newer image for mariadb:10.6
+6: Pulling from library/redis
+Digest: sha256:5cdb2ac6f780e1d250787f4a887c1ed1166e3389757189ea913059409acc6f7c
+Status: Downloaded newer image for redis:6
+10.11: Pulling from owncloud/server
+Digest: sha256:e853fcb340d0989b01816848850f8e98d3f6ebf0fc773ac76f8c8b97b791614f
+Status: Downloaded newer image for owncloud/server:10.11
