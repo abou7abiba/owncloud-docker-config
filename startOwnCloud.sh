@@ -19,6 +19,6 @@ echo $SHOW_LOG_FILE
 echo "# Start Docker containers"
 #This file should be at the same folder with a docker-compose.yml file so we can start it.
 #Configuration of the container should be reflected in the ".env" file at the same folder.
-docker-compose start redis db owncloud >> $LOG_FILE
+docker-compose start redis mariadb owncloud >> $LOG_FILE
 
 echo "## Starting ownCoud Completed ##"

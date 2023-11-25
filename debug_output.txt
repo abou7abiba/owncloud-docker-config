@@ -12,9 +12,7 @@
 68: echo 'Mount point /media/MyBook already exist. We Will use it.'
 71: isMounted '/media/aibrahim/My Book'
 36: findmnt -rno SOURCE,TARGET '/media/aibrahim/My Book'
-73: echo 'HDD /media/aibrahim/My Book already mounted. Will be unmounted'
-74: umount '/media/aibrahim/My Book'
-75: echo 'UnMount point /media/aibrahim/My Book sucessfully.'
+77: echo 'HDD /media/aibrahim/My Book is not mounted yet.'
 81: mount -t exfat --label 'My Book' /media/MyBook -o uid=33,gid=0,utf8,dmask=027,fmask=137
-82: echo 'Mount My Book HDD completed sucessfully.'
+82: echo 'Mount [My Book] HDD completed sucessfully.'
 83: set +x

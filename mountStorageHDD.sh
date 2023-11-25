@@ -31,6 +31,15 @@ PS4='$LINENO: '
 # For Debugging technique please refer to article "How to debug bash scripts with two tools"
 # https://www.techrepublic.com/article/how-to-debug-bash-scripts-with-two-easy-tools/
 
+# As another method, you can add the following line to the /etc/fstab
+# Auto mount for uid of www-data(33) and gid of www-data(33)
+# The value dmask=007, fmask=007 made the system to fail to start.
+#LABEL=My\040Book /media/MyBook exfat uid=33,gid=33,utf8,dmask=007,fmask=007 0 0
+# The following command worked fine.
+#LABEL=My\040Book /media/MyBook exfat uid=33,gid=33,utf8,dmask=027,fmask=137 0 0
+# If you had a problem after editing /etc/fstab and you failed to start the system, you can login as root and edit 
+# The fstab file. You can do that using nano editor
+
 #These functions return exit codes: 0 = found, 1 = not found
 
 isMounted    () { findmnt -rno SOURCE,TARGET "$1" >/dev/null;} #path or device
